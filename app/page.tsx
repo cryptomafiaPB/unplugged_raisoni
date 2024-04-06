@@ -22,23 +22,23 @@ export default function Home() {
   const [loadingmain, setLoadingmain] = useState(false);
   const router = useRouter();
 
-  const getAllPosts = async () => {
-    try {
-      const res = await axios.get("/api/post");
-      setPost(res.data);
-      console.log(res);
-      setLoading(false);
-    } catch (err) {
-      toast({
-        title: "An Error Occured while fetching prompts",
-        description: "Please try again later",
-        variant: "destructive",
-      });
-    }
-  };
   useEffect(() => {
+    const getAllPosts = async () => {
+      try {
+        const res = await axios.get("/api/post");
+        setPost(res.data);
+        console.log(res);
+        setLoading(false);
+      } catch (err) {
+        toast({
+          title: "An Error Occured while fetching prompts",
+          description: "Please try again later",
+          variant: "destructive",
+        });
+      }
+    };
     getAllPosts();
-  }, []);
+  }, [toast]);
 
   const requestPost = async () => {
     try {
