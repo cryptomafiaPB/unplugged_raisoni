@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { PostType } from "./api/newpost/route";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const [post, setPost] = useState<PostType[]>([]);
@@ -142,11 +143,17 @@ export default function Home() {
           </div>
         </div>
 
-        {!loading ? (
-          reverseMessage.map((post, index) => <Post key={index} {...post} />)
-        ) : (
-          <h1>Loading</h1>
-        )}
+        {!loading
+          ? reverseMessage.map((post, index) => <Post key={index} {...post} />)
+          : Array.from({ length: 4 }).map((_, index) => (
+              <div className="flex flex-col gap-3" key={index}>
+                <Skeleton className="h-[30px]" />
+                <Skeleton className="h-[20px] w-[250px] bg-slate-300" />
+                <div>
+                  <Skeleton className="h-[50px] bg-slate-300" />
+                </div>
+              </div>
+            ))}
       </section>
     </main>
   );
