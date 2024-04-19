@@ -6,7 +6,7 @@ import { PostType } from "../api/newpost/route";
 import axios from "axios";
 import Link from "next/link";
 
-function Post({ id, body, likes, createdAt, updatedAt }: PostType) {
+function Comments({ id, body, likes, createdAt, updatedAt }: PostType) {
   const { toast } = useToast();
   const [like, setLike] = useState(likes);
   const [comment, setComment] = useState();
@@ -166,4 +166,4 @@ function Post({ id, body, likes, createdAt, updatedAt }: PostType) {
   );
 }
 
-export default Post;
+export default Comments;

@@ -55,7 +55,7 @@ function SideBar() {
     }
   };
   return (
-    <div className="bg-white border-r-2 hidden sm:flex items-center gap-2 flex-col sm:w-20 h-screen md:w-48 lg:w-80">
+    <div className="bg-white border-r-2 fixed z-1 overflow-x-hidden left-0 top-0 hidden sm:flex items-center gap-2 flex-col sm:w-20 h-screen md:w-48 lg:w-80">
       <Link href={"/"} className="logo">
         <Image
           src={"/Logo.png"}

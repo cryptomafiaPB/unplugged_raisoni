@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { BiImageAdd, BiVideo } from "react-icons/bi";
 import SideBar from "./(components)/SideBar";
 import TopBar from "./(components)/TopBar";
-import MainInput from "./(components)/MainInput";
 import Post from "./(components)/Post";
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
@@ -81,7 +80,7 @@ export default function Home() {
       <TopBar />
       <SideBar />
       {/* <section className="w-full h-40 border-b-2 flex"> */}
-      <section className="w-full flex flex-col">
+      <section className="w-full flex flex-col sm:ml-20 md:ml-48 lg:ml-80">
         {/* <MainInput /> */}
 
         <div className="w-full h-44 border-b-2 flex">
