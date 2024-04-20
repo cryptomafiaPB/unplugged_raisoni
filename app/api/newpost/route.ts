@@ -8,6 +8,14 @@ export interface PostType {
     updatedAt: Date;
     id: string;
 }
+export interface CommentType {
+    body: string
+    likes: number
+    createdAt: Date
+    updatedAt: Date
+    id: string
+    postId: string
+}
 
 export const POST = async (req: Request) => {
     try {
