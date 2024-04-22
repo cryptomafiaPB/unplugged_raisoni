@@ -4,14 +4,18 @@
 
 <p id="description">Welcome to Collage Confessions a platform where collage students and staff can anonymously share their thoughts confessions and engage in discussions without revealing their identity. This README file provides an overview of the project its features and instructions for setup and usage.</p>
 
-<div style="display🐬">
+<h2>🚀 Demo</h2>
+
+[https://unpluggedraisoni.vercel.app/](https://unpluggedraisoni.vercel.app/)
+
+
 <h2>Project Screenshots:</h2>
 
 <img src="https://i.imgur.com/SI5cn5R.png" alt="project-screenshot" width="250" height="400/">
 
 <img src="https://imgur.com/3sWBtMb.png" alt="project-screenshot" width="1000" height="400/">
 
-</div
+
   
   
 <h2>🧐 Features</h2>
