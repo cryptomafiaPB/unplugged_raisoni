@@ -174,6 +174,7 @@ export default function Home() {
             <h1
               className="flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg cursor-pointer"
               onClick={() => {
+                setLoading(true);
                 setPage(page + 1);
               }}
             >
@@ -186,6 +187,7 @@ export default function Home() {
             <h1
               className="flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg cursor-pointer"
               onClick={() => {
+                setLoading(true);
                 setPage(page - 1);
               }}
             >
@@ -197,6 +199,7 @@ export default function Home() {
             <h1
               className="flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg cursor-pointer"
               onClick={() => {
+                setLoading(true);
                 setPage(page + 1);
               }}
             >
