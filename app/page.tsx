@@ -29,6 +29,7 @@ export default function Home() {
         const res = await axios.get(`/api/page/${page}`);
         setPost(res.data);
         setLoading(false);
+        router.push("#");
       } catch (err: any) {
         if (err.response.status === 404) {
           toast({
@@ -47,7 +48,7 @@ export default function Home() {
       }
     };
     getAllPosts();
-  }, [toast, page]);
+  }, [toast, page, router]);
 
   const requestPost = async () => {
     try {
