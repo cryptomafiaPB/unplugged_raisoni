@@ -28,7 +28,12 @@ export const POST = async (req: Request) => {
                 likes
             }
         })
-        const posts = await prisma.post.findMany()
+        const posts = await prisma.post.findMany({
+            orderBy: {
+                createdAt: 'desc', // Adjust the ordering as needed
+            },
+        }
+        )
 
         return new Response(JSON.stringify(posts), { status: 200 })
     } catch (error) {
