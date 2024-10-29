@@ -7,7 +7,7 @@ function page() {
     <main className="sm:flex">
       <TopBar />
       <SideBar />
-      <div className="w-full flex flex-col sm:ml-20 md:ml-48 lg:ml-80">
+      <div className="w-full flex flex-col sm:ml-20 md:ml-48 lg:ml-80 p-4 sm:p-12">
         <h1 className="font-semibold text-2xl">Rules and Guedlines 📜</h1>
         <p className="font-medium text-base m-6 text-slate-500">
           This confessions page is an independent platform run by anonymous
