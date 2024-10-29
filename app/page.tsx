@@ -18,6 +18,8 @@ export default function Home() {
   const [post, setPost] = useState<PostType[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
   const [body, setBody] = useState("");
   const [loadingmain, setLoadingmain] = useState(false);
   const router = useRouter();
@@ -25,20 +27,32 @@ export default function Home() {
   useEffect(() => {
     const getAllPosts = async () => {
       try {
-        const res = await axios.get("/api/post");
-        setPost(res.data);
-        console.log(res);
+        const res = await axios.get(`/api/page/${page}`);
+        // console.log(page);
+        setPost(res.data.posts);
+        setTotalPages(res.data.totalPages);
         setLoading(false);
-      } catch (err) {
-        toast({
-          title: "An Error Occured while fetching prompts",
-          description: "Please try again later",
-          variant: "destructive",
-        });
+        router.push("#");
+      } catch (err: any) {
+        if (err.response.status === 404) {
+          console.log(err.response.status);
+          toast({
+            title: "Posts not found",
+            description: "Posts are over",
+            variant: "destructive",
+          });
+          setPage(page - 1);
+        } else {
+          toast({
+            title: "An Error Occured while fetching prompts",
+            description: "Please try again later",
+            variant: "destructive",
+          });
+        }
       }
     };
     getAllPosts();
-  }, [toast]);
+  }, [toast, page, router]);
 
   const requestPost = async () => {
     try {
@@ -73,7 +87,7 @@ export default function Home() {
       router.push("/");
     }
   };
-  const reverseMessage = [...post].reverse();
+  // const reverseMessage = [...post].reverse();
 
   return (
     <main className="sm:flex">
@@ -143,9 +157,9 @@ export default function Home() {
         </div>
 
         {!loading
-          ? reverseMessage.map((post, index) => <Post key={index} {...post} />)
+          ? post.map((post, index) => <Post key={index} {...post} />)
           : Array.from({ length: 4 }).map((_, index) => (
-              <div className="flex flex-col gap-3" key={index}>
+              <div className="flex flex-col p-8 gap-3" key={index}>
                 <Skeleton className="h-[30px]" />
                 <Skeleton className="h-[20px] w-[250px] bg-slate-300" />
                 <div>
@@ -153,6 +167,55 @@ export default function Home() {
                 </div>
               </div>
             ))}
+        {page === 1 ? (
+          <div className="flex justify-center mb-16 mt-4 gap-4">
+            <h1 className="flex items-center gap-4 py-1 px-3 border-2 border-red-300 rounded-lg bg-red-200 cursor-not-allowed">
+              Prev
+            </h1>
+            <h1 className="px-3 py-1 border-2 border-slate-400 rounded-lg ">
+              {page}
+            </h1>
+            <h1
+              className="flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg cursor-pointer"
+              onClick={() => {
+                setLoading(true);
+                setPage(page + 1);
+              }}
+            >
+              Next
+            </h1>
+          </div>
+        ) : (
+          <div className="flex gap-4 justify-center mb-16 mt-4">
+            {" "}
+            <button
+              className="flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg cursor-pointer"
+              onClick={() => {
+                setLoading(true);
+                setPage(page - 1);
+              }}
+            >
+              Prev
+            </button>{" "}
+            <button className="py-1 px-3 border-2 border-slate-400 rounded-lg ">
+              {page}
+            </button>
+            <button
+              className={`flex items-center gap-4 py-1 px-3 border-2 border-slate-400 rounded-lg  ${
+                page === totalPages
+                  ? "cursor-not-allowed bg-red-200 border-red-300"
+                  : "cursor-pointer"
+              }`}
+              onClick={() => {
+                setLoading(true);
+                setPage(page + 1);
+              }}
+              disabled={page === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </section>
     </main>
   );

@@ -10,3 +10,5 @@ export const GET = async (req: Request) => {
         return new Response("Internal Server Error", { status: 500 })
     }
 }
+
+
